@@ -29,6 +29,12 @@ body{
   font-size: 2.6rem;
 }
 
+span{
+  border: 1px solid #ff4a4a;
+  border-radius: 100%;
+  color: #ff4a4a;
+}
+
 /* upload form styles */
 
 
