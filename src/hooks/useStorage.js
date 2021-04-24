@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { projStorage } from '../firebase/config'
+import { projStorage, projFirestore, timeStamp } from '../firebase/config'
 
 //hooks to handle file uploads
 
@@ -14,6 +14,7 @@ const useStorage = (file) => {
     useEffect(()=>{
         //getting reference to where file should be saved
         const storageRef = projStorage.ref(file.name);
+        const collectionRef = projFirestore.collection('images');
 
         //Asynchronous - needs some time to process, so on() is a listener when there is a change in progress,
         //1st arg. of listener is the type of event,
@@ -28,6 +29,8 @@ const useStorage = (file) => {
             setError(error);
         },async()=>{
             const url = await storageRef.getDownloadURL();
+            const createdAt = timeStamp();
+            collectionRef.add({url, createdAt});
             setUrl(url);
 
         })

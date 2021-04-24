@@ -30,7 +30,7 @@ return (
     <div className="output">
 {error && <div className="error">{error}</div>} 
     {file && <div>{file.name}</div>} 
-    {file && <ProgressBar file="file" setFile={setFile}/>}
+    {file && <ProgressBar file={file} setFile={setFile}/>}
     </div>
     </form>
 )
